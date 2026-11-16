@@ -7,83 +7,80 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Login(),
-    );
+    return MaterialApp(home: Home());
   }
 }
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Home> createState() => _HomeState();
 }
 
-class _LoginState extends State<Login> {
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 300,
-            width: 300,
+      appBar: AppBar(title: Text("Lec06")),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 400,
+            width: 450,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: const Color.fromARGB(137, 225, 224, 224)),
             child: Center(
-              child: Text("Login Page", style: TextStyle(fontSize: 30)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Login Form",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        focusColor: Colors.deepOrange,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(26))
+                        ),
+                        prefixIcon: Icon(Icons.mail),
+                        suffixIcon: Icon(Icons.visibility),
+                        hint: Text("Enter your email")
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: Icon(Icons.visibility),
+                        hint: Text("Enter your password")
+                      ),
+                      obscureText: true, 
+                      obscuringCharacter: "#",
+                    ),
+                  ),
+                  Text("Forgot Password", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),),
+                  SizedBox(height: 15,),
+                  ElevatedButton(onPressed: () {}, child: Text("Login"))
+                ],
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              keyboardType: TextInputType.text,
-              // obscureText: true,
-              // obscuringCharacter: "*",
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.person), 
-              suffixIcon: Icon(Icons.visibility),
-              hintText: "Username",
-              label: Text("Enter your name"), 
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(21),
-                borderSide: BorderSide(color: Colors.indigo, width: 2),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(21),
-                borderSide: BorderSide(color: Colors.teal, width: 2),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(21),
-                borderSide: BorderSide(color: Colors.grey, width: 2),
-              )
-            ),
-          ),
-            ),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {}, child: Text("Submit"))
-        ],
+        ),
       ),
     );
   }
